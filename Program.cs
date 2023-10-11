@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using ArielRamos_Taller.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<ArielRamos_TallerContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ArielRamos_TallerContext") ?? throw new InvalidOperationException("Connection string 'ArielRamos_TallerContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
